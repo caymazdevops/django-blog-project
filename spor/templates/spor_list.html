@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}Home - My Django Site{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="container">        
+            <div class="row">
+                {% for logo in logolar %}
+                <div class="col-1 mt-4"> <!-- col-6 yerine col-2 yaparak daha fazla kartın yan yana gelmesini sağlıyoruz -->            
+                        {% if logo.image %}
+                        <img src="{{ logo.image.url }}" style="width: 50px; height: 50px;"> <!-- Resim boyutu 30x30 olarak ayarlandı -->
+                        <p class="fw-bold">{{logo.team}}</p>
+                        {% else %}
+                        <p>Resim bulunamadı</p>
+                        {% endif %}   
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} <div class="container bg-secondary mt-4">
+           
+            <div class="row">
+                {% for kategori in kategoriler %}
+                <div class="col-4">
+                    
+                    <h2>{{kategori.title}}</h2>
+                    {% endfor %}
+                </div>
+               
+                
+
+                </div>
+            </div>
+        </div> {% endcomment %}
+       
+        <div class="row">
+            <div class="col-md-3 border-[1px] rounded-[10px] border-sky-700">
+                
+                {% for logo in logolar %}
+                <div class="col-1 mt-3 "> <!-- col-6 yerine col-2 yaparak daha fazla kartın yan yana gelmesini sağlıyoruz -->            
+                                               
+                        <div class="container">
+                            {% if logo.image %}
+                            <div class="flex flex-row bg-slate-300 w-[330px] h-[100px] rounded-[8px]">
+                                <img src="{{logo.image.url}}" alt="Girl in a jacket" class="p-[12px]">
+                                <p class="p-[28px] font-bold text-[18px]">{{logo.team}}</p>
+
+                            </div>
+                        </div>
+
+                        {% else %}
+                        <p>Resim bulunamadı</p>
+                        {% endif %}   
+                </div>
+                {% endfor %}
+            </div>
+
+
+            <div class="col-9 mt-2">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        {% for spor in sporlar %}
+                      <div class="carousel-item active">
+                        {% if spor.image %}
+                     <img src="{{ spor.image.url }}" alt="{{ spor.title }} " class="img-fluid rounded d-block w-100"/>  
+                     <div class="carousel-caption d-none d-md-block">
+                     <h1 class="font-bold text-[40px] bg-slate-500">{{ spor.title }}</h1>     
+                    </div>     
+                        {% else %}
+                        <p>Resim bulunamadı</p>
+                        {% endif %}    
+                      </div>
+                      {% endfor %}
+                      
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            </div>
+
+           
+
+        
+        <div class="container">
+            
+            <div class="flex flex-row">
+                {% for spor in sporlar %}
+                <div class="col-md-6">            
+                    
+                <div class="card mt-2">            
+                    {% if spor.image %}
+                    <img src="{{ spor.image.url }}" alt="{{ spor.title }} ">            
+                {% else %}
+                <p>Resim bulunamadı</p>
+                {% endif %}     
+                    <div class="card-body">
+                        <h3 class="card-title">{{spor.title}}</h3>
+                        <h2><a href="{% url 'spor_detail' spor.id %}">Detaya Git</a></h2>
+                    </div>
+                    <div class="card-text">
+                        <p class="card-text">{{spor.content}}</p>
+                    </div>
+                </div>
+            </div>
+            
+               <div class="col-6 bg-info mt-2 rounded">
+                <p>Deneme</p>
+               </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+    </div>
+    </div>
+
+
+    
+{% endblock %}

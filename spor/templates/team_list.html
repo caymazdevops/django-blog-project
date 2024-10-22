@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}Home - My Django Site{% endblock %}
+
+{% block content %}
+<div class="container">        
+    <div class="row">
+        {% for logo in logolar %}
+        <div class="col-1 mt-4"> <!-- col-6 yerine col-2 yaparak daha fazla kartın yan yana gelmesini sağlıyoruz -->            
+                {% if logo.image %}
+                <img src="{{ logo.image.url }}" style="width: 50px; height: 50px;"> <!-- Resim boyutu 30x30 olarak ayarlandı -->
+                <p class="fw-bold">{{logo.team}}</p>
+                {% else %}
+                <p>Resim bulunamadı</p>
+                {% endif %}   
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+    
+{% endblock %}

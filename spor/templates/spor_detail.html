@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}Home - My Django Site{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Spor Haberleri detayı</h1>
+        <h1>{{ spordetay.title }}</h1>
+    {% if spordetay.image %}
+        <img src="{{ spordetay.image.url }}" alt="{{ spordetay.title }}" style="width:300px;height:auto;">
+    {% endif %}
+    <p>{{ spordetay.content }}</p>
+    <p>{{ spordetay.kategori }}</p>
+    <a href="{% url 'spor_list' %}">Geri Dön</a>
+        
+    </div>
+    </div>
+    
+{% endblock %}
